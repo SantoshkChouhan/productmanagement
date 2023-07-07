@@ -1,0 +1,40 @@
+<h2>Category Master</h2>
+
+<form (ngSubmit)="saveCategory()" *ngIf="!editingCategoryId">
+  <label for="CategoryName">Category Name:</label>
+  <input type="text" id="categoryName" [(ngModel)]="newCategoryName" required [ngModelOptions]="{standalone: true}">
+  <button type="submit">Add Category</button>
+</form>
+
+<form (ngSubmit)="updateCategory()" *ngIf="editingCategoryId">
+  <label for="CategoryName">Category Name:</label>
+  <input type="text" id="CategoryName" [(ngModel)]="editCategoryName" required [ngModelOptions]="{standalone: true}">
+  <button type="submit">Update Category</button>
+  <button type="button" (click)="cancelEdit()">Cancel</button>
+
+</form>
+
+<table>
+  <tr>
+    <th>Category ID</th>
+    <th>Category Name</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let category of categories | paginate: {
+      itemsPerPage: tableSize,
+      currentPage: page,
+      totalItems: count };let i=index ">
+    <td>{{ category.categoryId }}</td>
+    <td>{{ category.categoryName }}</td>
+    <td>
+      <button (click)="editCategory(category)">Edit</button>
+      <button (click)="deleteCategory(category.categoryId)">Delete</button>
+    </td>
+  </tr>
+</table>
+<div>
+  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+
+</div>
+
+

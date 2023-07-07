@@ -1,0 +1,140 @@
+<h2>Product Master</h2>
+<form (ngSubmit)="saveProduct()" *ngIf="!editingProductId">
+  <label for="ProductName">Product Name:</label>
+  <input
+    type="text"
+    id="productName"
+    [(ngModel)]="newProductName"
+    required
+    [ngModelOptions]="{ standalone: true }"
+  />
+  <label for="categoryId">Category:</label>
+  <select
+    id="categoryId"
+    [(ngModel)]="newProductCategoryId"
+    required
+    [ngModelOptions]="{ standalone: true }"
+  >
+    <option *ngFor="let category of categories" [value]="category.categoryId">
+      {{ category.categoryId }}
+    </option>
+  </select>
+  <button type="submit">Add Product</button>
+</form>
+
+<form *ngIf="editingProductId" (ngSubmit)="updateProduct()">
+  <h2>Edit Product</h2>
+  <div>
+    <label>Product Name:</label>
+    <input type="text" [(ngModel)]="editProductName" name="productName" />
+  </div>
+  <div>
+    <label>Category:</label>
+    <select [(ngModel)]="editProductCategoryId" name="categoryId">
+      <option *ngFor="let category of categories" [value]="category.categoryId">
+        {{ category.categoryName }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">Update Product</button>
+  <button type="button" (click)="cancelEdit()">Cancel</button>
+
+</form>
+<table>
+  <tr>
+    <th>Product ID</th>
+    <th>Product Name</th>
+    <th>Category ID</th>
+    <th>Action</th>
+  </tr>
+  <tr
+    *ngFor="
+      let product of products
+        | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };
+      let i = index
+    "
+  >
+    <td>{{ product.productId }}</td>
+    <td>{{ product.productName }}</td>
+    <td>{{ product.categoryId }}</td>
+    <td>
+      <button (click)="editProduct(product.productId)">Edit</button>
+      <button (click)="deleteProduct(product.productId)">Delete</button>
+    </td>
+  </tr>
+</table>
+<div>
+  <pagination-controls
+    (pageChange)="onPageChange($event)"
+  ></pagination-controls>
+</div>
+
+
+
+<!-- Product Details -->
+
+<h2>Product List</h2>
+
+<form (ngSubmit)="saveProduct()">
+  <label for="ProductName">Product Name:</label>
+  <input
+    type="text"
+    id="ProductName"
+    [(ngModel)]="newProductName"
+    required
+    [ngModelOptions]="{ standalone: true }"
+  />
+  <label for="CategoryId">Category:</label>
+  <select
+    id="CategoryId"
+    [(ngModel)]="newProductCategoryId"
+    required
+    [ngModelOptions]="{ standalone: true }"
+  >
+    <option *ngFor="let category of categories" [value]="category.categoryId">
+      {{ category.categoryName }}
+    </option>
+  </select>
+  <button type="submit">Add Product</button>
+</form>
+
+<table>
+  <tr>
+    <th>Product ID</th>
+    <th>Product Name</th>
+    <th>Category ID</th>
+    <th>Category Name</th>
+    <th>Action</th>
+  </tr>
+  <tr
+    *ngFor="
+      let product of products
+        | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };
+      let i = index
+    "
+  >
+    <td>{{ product.productId }}</td>
+    <td>{{ product.productName }}</td>
+    <td>{{ product.categoryId }}</td>
+    <td>{{ getCategoryName(product.categoryId) }}</td>
+    <!-- <td>
+      <button (click)="editProducts(product)">Edit</button>
+      <button (click)="deleteProduct(product.productId)">Delete</button>
+    </td> -->
+  </tr>
+</table>
+<div>
+  <pagination-controls
+    (pageChange)="onPageChange($event)"
+  ></pagination-controls>
+</div>
