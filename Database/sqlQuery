@@ -1,0 +1,164 @@
+sql query
+
+dowmload xampp server
+Using xampp server to connect mysql database.
+
+
+step 1: create database categories;
+
+step 2: create table;
+      
+      CREATE TABLE category (
+  categoryId INT PRIMARY KEY AUTO_INCREMENT,
+  categoryName VARCHAR(255)
+);
+
+ step 2 : insert into category table     
+
+
+INSERT INTO categories (categoryName)
+VALUES
+    ('Electronics'),
+    ('Books'),
+    ('Clothing'),
+    ('Home & Garden'),
+    ('Sports & Outdoors'),
+    ('Health & Beauty'),
+    ('Toys & Games'),
+    ('Food & Beverages'),
+    ('Automotive'),
+    ('Pet Supplies'),
+    ('Movies & Music'),
+    ('Jewelry'),
+    ('Tools & Home Improvement'),
+    ('Baby'),
+    ('Office Products'),
+    ('Electrical'),
+    ('Industrial & Scientific'),
+    ('Grocery'),
+    ('Music Instruments'),
+    ('Furniture');
+   
+
+step 3 : create table products with foreign key categoryId
+Realtion between products and categoryId
+
+CREATE TABLE products (
+    productId INT AUTO_INCREMENT PRIMARY KEY,
+    productName VARCHAR(100),
+    categoryId INT,
+    FOREIGN KEY (categoryId) REFERENCES category(categoryId)
+);
+
+INSERT INTO products (productName, categoryId)
+VALUES
+    ('iPhone 12', 1),
+    ('Samsung Galaxy S21', 1),
+    ('iPad Pro', 1),
+    ('MacBook Pro', 1),
+    ('PlayStation 5', 1),
+    ('Xbox Series X', 1),
+    ('AirPods Pro', 1),
+    ('Sony WH-1000XM4 Headphones', 1),
+    ('Nintendo Switch', 1),
+    ('Kindle Paperwhite', 1),
+    ('Harry Potter and the Sorcerer''s Stone', 2),
+    ('To Kill a Mockingbird', 2),
+    ('The Great Gatsby', 2),
+    ('1984 by George Orwell', 2),
+    ('The Lord of the Rings Trilogy', 2),
+    ('A Game of Thrones', 2),
+    ('Nike Air Max', 3),
+    ('Adidas Ultraboost', 3),
+    ('Converse Chuck Taylor All Star', 3),
+    ('Vans Old Skool', 3),
+    ('Levi''s Jeans', 3),
+    ('Under Armour T-Shirt', 3),
+    ('KitchenAid Stand Mixer', 4),
+    ('Instant Pot Pressure Cooker', 4),
+    ('Cuisinart Knife Set', 4),
+    ('Ninja Blender', 4),
+    ('Keurig Coffee Maker', 4),
+    ('Weber Gas Grill', 4),
+    ('Spalding Basketball', 5),
+    ('Wilson Tennis Racket', 5),
+    ('Yoga Mat', 5),
+    ('Dumbbell Set', 5),
+    ('Golf Clubs', 5),
+    ('L''Oréal Paris Moisturizer', 6),
+    ('NIVEA Men''s Shaving Cream', 6),
+    ('Dove Body Wash', 6),
+    ('Maybelline Mascara', 6),
+    ('Gillette Fusion Razor', 6),
+    ('LEGO Classic Brick Set', 7),
+    ('Monopoly Board Game', 7),
+    ('Jigsaw Puzzle', 7),
+    ('Uno Card Game', 7),
+    ('Hershey''s Chocolate Bar', 8),
+    ('Coca-Cola 12-Pack', 8),
+    ('Lay''s Potato Chips', 8),
+    ('Ben & Jerry''s Ice Cream', 8),
+    ('Oreo Cookies', 8),
+    ('Michelin Tires', 9),
+    ('Valvoline Motor Oil', 9),
+    ('Bosch Drill Set', 9),
+    ('DeWalt Cordless Drill', 9),
+    ('Craftsman Socket Set', 9),
+    ('Cat Food', 10),
+    ('Dog Food', 10),
+    ('Cat Litter', 10),
+    ('Dog Leash', 10),
+    ('The Shawshank Redemption (Blu-ray)', 11),
+    ('The Dark Knight (DVD)', 11),
+    ('Breaking Bad - Complete Series (DVD)', 11),
+    ('Pink Floyd - Dark Side of the Moon (Vinyl)', 11),
+    ('Queen - Greatest Hits (CD)', 11),
+    ('Diamond Stud Earrings', 12),
+    ('Gold Pendant Necklace', 12),
+    ('Silver Bracelet', 12),
+    ('Fossil Men''s Watch', 12),
+    ('Ray-Ban Aviator Sunglasses', 12),
+    ('DeWalt Power Drill', 13),
+    ('Makita Cordless Drill', 13),
+    ('Black & Decker Screwdriver Set', 13),
+    ('Ryobi Circular Saw', 13),
+    ('Pampers Baby Diapers', 14),
+    ('Huggies Pull-Ups Training Pants', 14),
+    ('Johnson''s Baby Shampoo', 14),
+    ('Gerber Baby Food', 14),
+    ('Fisher-Price Baby Toy', 14),
+    ('HP Printer', 15),
+    ('Canon DSLR Camera', 15),
+    ('Epson Projector', 15),
+    ('Logitech Wireless Mouse', 15),
+    ('LED Light Bulbs', 16),
+    ('Smart Home Security Camera', 16),
+    ('Google Nest Thermostat', 16),
+    ('Ring Video Doorbell', 16),
+    ('Scientific Calculator', 17),
+    ('Graphing Calculator', 17),
+    ('TI-84 Plus Calculator', 17),
+    ('Casio Digital Watch', 17),
+    ('Bananas', 18),
+    ('Apples', 18),
+    ('Strawberries', 18),
+    ('Oranges', 18),
+    ('Grapes', 18),
+    ('Fender Stratocaster Electric Guitar', 19),
+    ('Gibson Les Paul Standard Electric Guitar', 19),
+    ('Yamaha Acoustic Guitar', 19),
+    ('Roland Digital Piano', 19),
+    ('Sofa', 20),
+    ('Dining Table', 20),
+    ('Bed Frame', 20),
+    ('TV Stand', 20);
+
+    
+Step 4: Realtion between  category and product table
+
+SELECT products.productId,products.productName, products.categoryId, category.categoryName
+FROM products
+INNER JOIN category ON products.categoryId=category.categoryId;
+
+
+
