@@ -15,7 +15,7 @@
 ## Server Setup
 
 1. Install project dependencies: `npm install`
-2. Start the Node.js server: `node server.js`
+2. Start the Node.js server: `node server.js`/nodemon server.js
 3. Access the server at `http://localhost:3000`
 
 ## Front-end Setup
@@ -28,13 +28,4 @@
 ## Troubleshooting
 
 - If you encounter any issues, try running `npm install` to ensure all dependencies are installed correctly.
-- For further support or bug reporting, please [open an issue](link-to-issue-tracker).
 
-## FAQ
-
-**Q:** What is the default admin username and password?
-**A:** The default admin username is "admin" and the password is "password123".
-
-## Resources
-
-- [Link to documentation or additional resources]
